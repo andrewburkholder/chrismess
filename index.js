@@ -8,7 +8,9 @@ function updateHeading(ev) {
     const flickName = f.flickName.value
 
     const list = document.querySelector("#flicks");
-    list.innerHTML += `<li>${flickName}</li>`;
+    const newLi = document.createElement('li');
+    newLi.textContent = `${flickName}`;
+    list.appendChild(newLi);
 
-    f.reset;
+    f.reset();
 }

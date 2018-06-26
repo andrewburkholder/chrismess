@@ -1,7 +1,9 @@
- const button = document.querySelector('button');
- button.addEventListener('click', updateHeading);
- const heading = document.querySelector('#changeThis');
+const heading = document.querySelector("#changeThis");
+document.querySelector('form').addEventListener("submit", updateHeading);
 
- function updateHeading() {
-    heading.innerHTML = 'Too many chrisses!'
- }
+function updateHeading(ev) {
+    ev.preventDefault();  //prevents page from reloading on submit
+    const f = ev.target;
+    const flickName = f.flickName.value
+    heading.textContent = flickName;
+}

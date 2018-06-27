@@ -1,7 +1,7 @@
 const heading = document.querySelector("#changeThis");
-document.querySelector('form').addEventListener("submit", updateHeading);
+document.querySelector('form').addEventListener("submit", addToList);
 
-function updateHeading(ev) {
+function addToList(ev) {
     ev.preventDefault();  //prevents page from reloading on submit
     const f = ev.target;
     
@@ -9,7 +9,7 @@ function updateHeading(ev) {
 
     const list = document.querySelector("#flicks");
     const newLi = document.createElement('li');
-    newLi.textContent = `${flickName}`;
+    newLi.textContent = flickName;
     list.appendChild(newLi);
 
     f.reset();

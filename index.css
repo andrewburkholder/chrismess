@@ -3,3 +3,11 @@
 body {
     font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
+
+.flickName {
+    color: blue;
+}
+
+.flickYear {
+    color: rgb(19, 156, 19);
+}

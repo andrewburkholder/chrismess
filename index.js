@@ -10,7 +10,14 @@ function addToList(ev) {
 
     const list = document.querySelector("#flicks");
     const newLi = document.createElement('li');
-    newLi.textContent = flickName + " (" + flickYear + ")";
+    const flickNameSpan = document.createElement("span");
+    const flickYearSpan = document.createElement("span");
+    flickNameSpan.textContent = flickName;
+    flickNameSpan.classList.add("flickName");
+    flickYearSpan.textContent = " (" + flickYear + ")";
+    flickYearSpan.classList.add("flickYear");
+    newLi.appendChild(flickNameSpan);
+    newLi.appendChild(flickYearSpan);
     list.appendChild(newLi);
 
     f.reset();

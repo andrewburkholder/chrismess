@@ -14,10 +14,11 @@ function addToList(ev) {
     const flickYearSpan = document.createElement("span");
     flickNameSpan.textContent = flickName;
     flickNameSpan.classList.add("flickName");
-    flickYearSpan.textContent = " (" + flickYear + ")";
+    flickYearSpan.textContent = flickYear;
     flickYearSpan.classList.add("flickYear");
     newLi.appendChild(flickNameSpan);
     newLi.appendChild(flickYearSpan);
+    newLi.classList.add("flick");
     list.appendChild(newLi);
 
     f.reset();

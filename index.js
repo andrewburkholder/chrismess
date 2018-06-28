@@ -31,6 +31,8 @@ class App {
       deleteSpan.classList.add("delete");
       deleteSpan.innerHTML = "<img onclick='deleteFlick(event)' src='delete.png' alt='Delete this flick'>";
      item.appendChild(deleteSpan);
+     item.setAttribute("flickNumber", i);
+     i++
      
       return item
     }
@@ -60,8 +62,12 @@ class App {
   const app = new App()
 
   const flickArray = [];
+  let i = 0;
   
   function deleteFlick(ev) {
     const target = ev.target.parentNode.parentNode;
+    let flickToDelete = target.getAttribute('flickNumber');
+    flickArray.splice(flickToDelete, 1);
+    console.log(flickArray);
     target.parentNode.removeChild(target);
 }

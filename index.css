@@ -114,3 +114,7 @@ button[type="submit"]:hover {
 .favorite {
     color: gold;
 }
+
+span.favorite {
+    display: none;
+  }

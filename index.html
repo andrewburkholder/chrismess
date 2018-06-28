@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Chrismess - A whole mess o' Chrisses</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chrismess - A whole mess o' Chrisses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-    <header>
-        <h1 id="changeThis">Chrismess</h1>
-        <h2>A whole mess o' Chrisses</h2>
-        <img src="decoration.png" alt="">
-    </header>
+  <header>
+    <h1>Chrismess</h1>
+    <h2>a whole mess of Chrisses</h2>
+    <img src="decoration.png" alt="">
+  </header>
 
-    <form>
-        <div>
-        <input type="text" name="flickName" placeholder="Enter a flick" autofocus>
-        <input type="text" name="flickYear" placeholder="Enter flick year">
-        <button id="button" type="submit">Add your favorite Chris flick!</button>
-        </div>
-    </form>
+  <form id="flickForm">
+    <div>
+      <input
+        type="text"
+        name="flickName"
+        placeholder="Enter a flick"
+        autofocus
+      >
+      <input
+        class="smaller"
+        type="text"
+        name="chrisName"
+        placeholder="Which Chris?"
+      >
+      <button type="submit">Add Flick</button>
+    </div>
+  </form>
 
-    <ul id='flicks'></ul>
+  <ul id="flicks"></ul>
 
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

@@ -27,9 +27,15 @@ class App {
         const span = this.renderProperty(propertyName, flick[propertyName])
         item.appendChild(span)
       })
-  
+      const deleteSpan = document.createElement("span");
+      deleteSpan.classList.add("delete");
+      deleteSpan.innerHTML = "<img onclick='deleteFlick(event)' src='delete.png' alt='Delete this flick'>";
+     item.appendChild(deleteSpan);
+     
       return item
     }
+
+  
   
     handleSubmit(ev) {
       const f = ev.target
@@ -38,7 +44,9 @@ class App {
         name: f.flickName.value,
         chris: f.chrisName.value,
       }
-  
+      
+      flickArray.push(flick);
+
       const item = this.renderItem(flick)
   
       const list = document.querySelector('#flicks')
@@ -50,3 +58,10 @@ class App {
   }
   
   const app = new App()
+
+  const flickArray = [];
+  
+  function deleteFlick(ev) {
+    const target = ev.target.parentNode.parentNode;
+    target.parentNode.removeChild(target);
+}

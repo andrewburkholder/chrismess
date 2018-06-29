@@ -3,12 +3,40 @@ class App {
         this.list = document.querySelector('#flicks');
 
         this.flickArray = [];
+        this.load();
         const form = document.querySelector('form#flickForm')
         form.addEventListener('submit', (ev) => {
             ev.preventDefault()
             this.handleSubmit(ev)
         })
-      //  if (localStorage.getItem("flickArray")) this.flickArray = JSON.parse(localStorage.getItem("flickArray"));
+    }
+
+    handleSubmit(ev) {
+        const f = ev.target
+
+        const flick = {
+            name: f.flickName.value,
+            chris: f.chrisName.value,
+            favorite: false,
+        }
+
+        this.addFlick(flick);
+        this.save();
+
+        f.reset();
+        f.flickName.focus();
+    }
+
+    addFlick (flick) {
+        this.flickArray.push(flick);
+
+        const item = this.renderItem(flick)
+
+        if (flick.favorite) {
+            item.classList.add('favorite')
+        }
+
+        this.list.appendChild(item);
     }
 
     renderProperty(name, value) {
@@ -36,55 +64,48 @@ class App {
         //create delete button
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete');
-        deleteButton.textContent = 'delete';
+        deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
         deleteButton.addEventListener('click', (_ev) => this.deleteFlick(flick, item));
         buttonSpan.appendChild(deleteButton);
 
         //add a favorite button
-        const favoriteButton =document.createElement('button');
+        const favoriteButton = document.createElement('button');
         favoriteButton.classList.add('favorite');
-        favoriteButton.textContent = 'favorite';
+        favoriteButton.innerHTML = '<i class="fas fa-heart"></i>';
         favoriteButton.addEventListener('click', (_ev) => this.toggleFavorite(flick, item));
         buttonSpan.appendChild(favoriteButton);
         item.appendChild(buttonSpan);
-        
+
 
         return item
-    }
-
-
-
-    handleSubmit(ev) {
-        const f = ev.target
-
-        const flick = {
-            name: f.flickName.value,
-            chris: f.chrisName.value,
-            favorite: false,
-        }
-
-        this.flickArray.push(flick);
-        localStorage.setItem("flickArray", JSON.stringify(this.flickArray));
-
-        const item = this.renderItem(flick)
-
-        this.list.appendChild(item);
-
-        f.reset()
-        f.flickName.focus()
     }
 
     deleteFlick(flick, item) {
         this.list.removeChild(item);
         const i = this.flickArray.indexOf(flick);
         this.flickArray.splice(i, 1);
+        this.save()
     }
 
     toggleFavorite(flick, item) {
         // update both the UI and the array
-        flick.favorite = item.classList.toggle('favorite')
-       }
+        flick.favorite = item.classList.toggle('favorite');
+
+        this.save();
     }
+
+    save() {
+        localStorage.setItem('flicks', JSON.stringify(this.flickArray));
+    }
+
+    load() {
+        const flicks = JSON.parse(localStorage.getItem('flicks'));
+
+        if (flicks) {
+            flicks.forEach(flick => this.addFlick(flick));
+        }
+    }
+}
 
 
 const app = new App()
